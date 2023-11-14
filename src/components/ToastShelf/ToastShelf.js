@@ -3,13 +3,13 @@ import React from "react";
 import Toast from "../Toast";
 import styles from "./ToastShelf.module.css";
 
-function ToastShelf({ toasts }) {
+function ToastShelf({ toasts, handleDismiss }) {
   return (
     <ol className={styles.wrapper}>
-      {toasts.map(({ id, message, variant, handleDismiss }) => {
+      {toasts.map(({ id, message, variant }) => {
         return (
           <li key={id} className={styles.toastWrapper}>
-            <Toast variant={variant} handleDismiss={handleDismiss}>
+            <Toast id={id} variant={variant} handleDismiss={handleDismiss}>
               {message}
             </Toast>
           </li>

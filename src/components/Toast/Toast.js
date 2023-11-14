@@ -18,7 +18,7 @@ const ICONS_BY_VARIANT = {
   error: AlertOctagon,
 };
 
-function Toast({ handleDismiss, children = "", variant = "notice" }) {
+function Toast({ id, handleDismiss, children = "", variant = "notice" }) {
   const VariantIcon = ICONS_BY_VARIANT[variant];
 
   return (
@@ -31,7 +31,7 @@ function Toast({ handleDismiss, children = "", variant = "notice" }) {
         className={styles.closeButton}
         onClick={(e) => {
           e.preventDefault();
-          handleDismiss();
+          handleDismiss(id);
         }}
       >
         <X size={24} />
