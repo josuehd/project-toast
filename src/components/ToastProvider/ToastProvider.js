@@ -5,7 +5,10 @@ import useKeyDown from "../../hooks/useKeyDown";
 export const ToastContext = React.createContext({});
 function ToastProvider({ children }) {
   const [toasts, setToasts] = React.useState([]);
-  useKeyDown("Escape", () => setToasts([]));
+  const handleCallback = React.useCallback(() => {
+    setToasts([]);
+  }, [setToasts]);
+  useKeyDown("Escape", handleCallback);
 
   function handleDismiss(id) {
     const nextToasts = toasts.filter((toast) => {
