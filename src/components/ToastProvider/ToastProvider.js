@@ -11,11 +11,7 @@ function ToastProvider({ children }) {
   useKeyDown("Escape", handleCallback);
 
   function handleDismiss(id) {
-    const nextToasts = toasts.filter((toast) => {
-      return toast.id !== id;
-    });
-
-    setToasts(nextToasts);
+    setToasts((prevToast) => prevToast.filter((toast) => toast.id !== id));
   }
 
   function showToast({ message, variant }) {
@@ -35,7 +31,7 @@ function ToastProvider({ children }) {
   return (
     <ToastContext.Provider value={{ showToast }}>
       {children}
-      <ToastShelf toasts={toasts} handleDismiss={handleDismiss} />
+      <ToastShelf toasts={toasts} />
     </ToastContext.Provider>
   );
 }
